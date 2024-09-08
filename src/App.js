@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from 'react';
+import './App.css'
+import { Encryption } from './Components/Encryption';
+import { Decryption } from './Components/Decryption';
 function App() {
+  const [mode,setMode] = useState('');
+  const handleMode = (mode) => {
+    setMode(mode);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {mode==='' &&(
+        <div>
+          <h1>Stegongraphy too  l</h1>
+          <button type='button' onClick={() => handleMode('encryption')}>Encryption</button>
+          <button type='button' onClick={() => handleMode('decryption')}>Decryption</button>
+          </div>
+      )}
+      {mode === 'encryption' && <Encryption/>}
+      {mode === 'decryption' && <Decryption/>}
     </div>
   );
 }
